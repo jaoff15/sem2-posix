@@ -19,19 +19,27 @@
    and return upper-cased copy of argv_string */
 
 int counter;
+pthread_mutex_t lock;
+
 void *print_number(void *ptr){
-	int i ;
+	int i;
+	pthread_mutex_lock(&lock);
 	counter = 0;
 	for(i=0;i < 500; i++){
+//		pthread_mutex_lock(&mutex_counter);
 		counter++;
 		printf("%d, ",counter);
+//		pthread_mutex_unlock(&mutex_counter);
 	}
+	pthread_mutex_unlock(&lock);
 }
 
 int main()
 {
      pthread_t thread1, thread2;
      int  iret1, iret2;
+
+     pthread_mutex_init(&lock, NULL);
 
     /* Create independent threads each of which will execute function */
      iret1 = pthread_create( &thread1, NULL, print_number, &counter);
