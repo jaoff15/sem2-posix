@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/exercise2.cpp \
 ../src/posix.cpp 
 
 OBJS += \
+./src/exercise2.o \
 ./src/posix.o 
 
 CPP_DEPS += \
+./src/exercise2.d \
 ./src/posix.d 
 
 
